@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="mymodule">
+
+<head>
+    <title>StarBucks</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.32/angular.min.js"></script>
+    <script src="./controller.js"></script>
+    <script src="./routes.js"></script>
+    <style>
+        body {
+            background-image: url("./background.jpg");
+            background-size: 100% auto;
+        }
+        
+        .container {
+            margin-top: 5%;
+            opacity: .69;
+        }
+        
+        .jumbotron {
+            margin: 5px;
+            width: 300px;
+            height: auto;
+            float: left
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+
+
+        <div ng-controller="viewordercontroller">
+            <div ng-repeat="order in orders | orderBy  : reverse">
+                <div class="jumbotron" id="">
+
+
+                    <h4 style="color:blue">Order No: {{order.orderid}}</h4>
+                    <ul ng-repeat="item in order.items">
+                        <li>{{item.name}}, {{item.size}}, {{item.qty}}</li>
+                    </ul>
+
+                    <button class="btn btn-link " ng-click="edititem(order.orderid)">Edit</button>
+                    <button class="btn btn-link " ng-click="edititem(order.orderid)">Delete</button>
+                </div>
+            </div>
+
+
+        </div>
+
+
+
+
+
+
+
+
+
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="mymodule">
+
+<head>
+    <title>StarBucks</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.32/angular.min.js"></script>
+    <script src="./controller.js"></script>
+    <script src="./routes.js"></script>
+    <style>
+        body {
+            background-image: url("./background.jpg");
+            background-size: 100% auto;
+        }
+        
+        #takeorder {
+            width: 90%;
+            margin-top: 10%;
+            opacity: .89;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="jumbotron" id="takeorder">
+
+            <form ng-controller="edititemcontroller">
+
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label for="item">Item:</label>
+                            <select class="form-control" ng-model="itemname" required>
+                                <option value="Coffee">Coffee</option>
+                                <option value="Ice Tea">Ice Tea</option>
+                                <option value="Hot Chocolate">Hot Chocolate</option>
+                                <option value="Lattee">Lattee</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label for="pwd">Size</label>
+                            <select class="form-control" ng-model="itemsize" required>
+                                <option value="tall ">tall</option>
+                                <option value="grande ">grande</option>
+                                <option value="venti ">venti</option>
+                                
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4 ">
+                        <div class="form-group ">
+                            <label for="qty ">Qty:</label>
+                            <input type="number " min="0 " ng-model="itemqty " class="form-control " id="qty " required>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-warning " ng-click="additem()">ADD ITEM</button>
+
+
+                <table class="table table-hover " ng-repeat="order in orders">
+                    <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th>Name</th>
+                            <th>Size</th>
+                            <th>Qty</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr ng-repeat="item in order.items">
+                            <td>{{item.id}}</td>
+                            <td><select class="form-control" value="{{item.name}}" required>
+                                <option value="Coffee">Coffee</option>
+                                <option value="Ice Tea">Ice Tea</option>
+                                <option value="Hot Chocolate">Hot Chocolate</option>
+                                <option value="Lattee">Lattee</option>
+                            </select></td>
+                            <td><input value="{{item.size}}" /></td>
+                            <td><input value="{{item.qty}}" /></td>
+                            <td><button class="btn btn-danger" ng-click="deleteitem($index)">Delete</button></td>
+
+                        </tr>
+                    </tbody>
+                </table>
+
+                <button type="button" class="btn btn-large btn-block btn-success " ng-click="placeorder()">Update Order</button>
+
+
+            </form>
+        </div>
+
+
+
+    </div>
+
+</body>
+
+</html>
